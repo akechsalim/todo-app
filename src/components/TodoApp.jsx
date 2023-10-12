@@ -1,11 +1,19 @@
 import { useState } from 'react'
+import { BrowserRouter,Route,Routes, useNavigate,useParams} from 'react-router-dom'
 import './TodoApp.css'
 export default function TodoApp(){
     return(
         <div className="TodoApp">
-            {/* Todo Management App */}
-            <LoginComponent/>
-            {/* <WelcomeComponent/> */}
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<LoginComponent/>}></Route>
+                    <Route path='/login' element={<LoginComponent/>}></Route>
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>}></Route>
+                    <Route path='*' element={<ErrorComponent/>}></Route>
+                </Routes>
+            </BrowserRouter>
+            
+            
         </div>
     )
 }
@@ -20,6 +28,8 @@ function LoginComponent(){
 
     const[showErrorMessage, setshowErrorMessage] = useState(false)
 
+    const navigate =useNavigate();
+
     function handleUsernameChange(event){
         setUsername(event.target.value)
 
@@ -33,6 +43,7 @@ function LoginComponent(){
             console.log('success')
             setshowSuccessMessage(true)
             setshowErrorMessage(false)
+            navigate(`/welcome/${username}`)
         }else{
             console.log('failed')
             setshowSuccessMessage(false)
@@ -40,24 +51,13 @@ function LoginComponent(){
         }
 
     }
-    function SuccessMessageComponent(){
-        if(showSuccessMessage){
-            return <div className='successMessage'>Authenticated successfully</div>
-        }
-        return null
-        }
-        function ErrorMessageComponent(){
-            if(showErrorMessage){
-                return <div className='errorMessage'>Authentication failled please check your credentials</div>
-            }
-            return null
-        
-            }
 
     return(
         <div className="Login">
-            <SuccessMessageComponent/>
-            <ErrorMessageComponent/>
+            <h1>Time to login</h1>
+            {showSuccessMessage && <div className='successMessage'>Authenticated successfully</div>}
+            {showErrorMessage && <div className='errorMessage'>Authentication failled.
+                                                                Please check your credentials</div>}
             <div className="LoginForm">
                 <div>
                 <label>User Name:</label>
@@ -79,9 +79,26 @@ function LoginComponent(){
 
 // eslint-disable-next-line
 function WelcomeComponent(){
+
+    const {username} =useParams()
+    console.log(username)
+
     return(
         <div className="Welcome">
+            <h1>{username}</h1>
+        <div>
             Welcome Component
+        </div>
+        </div>
+    )
+}
+function ErrorComponent(){
+    return(
+        <div className="ErrorComponent">
+            <h1>We are working really hard!</h1>
+            <div>
+                Appologies for the 404.Reach out to our team 0769564870.
+            </div>
         </div>
     )
 }
