@@ -6,10 +6,11 @@ export default function TodoApp(){
         <div className="TodoApp">
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<LoginComponent/>}></Route>
-                    <Route path='/login' element={<LoginComponent/>}></Route>
-                    <Route path='/welcome/:username' element={<WelcomeComponent/>}></Route>
-                    <Route path='*' element={<ErrorComponent/>}></Route>
+                    <Route path='/' element={<LoginComponent/>}/>
+                    <Route path='/login' element={<LoginComponent/>}/>
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>}/>
+                    <Route path='/todos' element={<ListTodosComponent/>}/>
+                    <Route path='*' element={<ErrorComponent/>}/>
                 </Routes>
             </BrowserRouter>
             
@@ -98,6 +99,57 @@ function ErrorComponent(){
             <h1>We are working really hard!</h1>
             <div>
                 Appologies for the 404.Reach out to our team 0769564870.
+            </div>
+        </div>
+    )
+}
+function ListTodosComponent(){
+
+    const today = new Date();
+    const targetDate = new Date(today.getFullYear()+12, today.getMonth(), today.getDay())
+
+
+    const todos =[
+        {id: 1, description:'learn AWS', done: false, targetDate:targetDate},
+        {id: 2, description:'learn Full Stack Dev' ,done: false, targetDate:targetDate},
+        {id: 3, description:'learn DevOps', done: false, targetDate:targetDate}
+    ]
+
+    return(
+        <div className="ListTodosComponenet">
+            <h1>Things you want to do</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+
+                        <td>id</td>
+                        <td>description</td>
+                        <td>Is Done?</td>
+                        <td>Target Date</td>
+
+                        </tr>
+                    
+                    </thead>
+                    <tbody>
+                        {
+                            todos.map(
+                                todo =>(
+                                    <tr key={todo.id}>
+
+                                    <td>{todo.id}</td>
+                                    <td>{todo.description}</td>
+                                    <td>{todo.done.toString()}</td>
+                                    <td>{todo.targetDate.toDateString()}</td>
+            
+                                    </tr>
+
+                                )
+                            )
+                        }
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
     )
