@@ -8,6 +8,21 @@ footer{
      width: 90%;
      height: 40px;
 }
-header{
-     
-}
+.header {
+     border-bottom: 1px solid #e0e0e0; 
+     border-width: 5px; 
+     margin-bottom: 5rem;
+     padding: 2rem; 
+   }
+   
+   .site-link {
+     font-size: 24px;
+     font-weight:bold;
+     color: black;
+     margin-left: 2px;
+   }
+   
+   .nav-link {
+     color: #333;
+   }
+   

@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from './security/AuthContext'
 function LoginComponent(){
 
     const[username, setUsername] = useState('input')
 
     const[password, setPassword] = useState('')
 
-    const[showSuccessMessage, setshowSuccessMessage] = useState(false)
 
     const[showErrorMessage, setshowErrorMessage] = useState(false)
 
     const navigate =useNavigate();
+
+    const authContext = useAuth()
 
     function handleUsernameChange(event){
         setUsername(event.target.value)
@@ -21,14 +23,10 @@ function LoginComponent(){
         console.log(event.target.value)
     }
     function handleSubmt(){
-        if(username === 'dummy'&& password ==='dummy'){
-            console.log('success')
-            setshowSuccessMessage(true)
-            setshowErrorMessage(false)
+        if(authContext.login(username,password)){
+            authContext.setAuthenticated(true)
             navigate(`/welcome/${username}`)
         }else{
-            console.log('failed')
-            setshowSuccessMessage(false)
             setshowErrorMessage(true)
         }
 
@@ -37,7 +35,6 @@ function LoginComponent(){
     return(
         <div className="Login">
             <h1>Time to login</h1>
-            {showSuccessMessage && <div className='successMessage'>Authenticated successfully</div>}
             {showErrorMessage && <div className='errorMessage'>Authentication failled.
                                                                 Please check your credentials</div>}
             <div className="LoginForm">
