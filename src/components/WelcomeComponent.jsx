@@ -1,15 +1,15 @@
 import { Link, useParams } from 'react-router-dom'
-function WelcomeComponent(){
+function WelcomeComponent() {
 
-    const {username} =useParams()
+    const { username } = useParams()
     console.log(username)
 
-    return(
+    return (
         <div className="Welcome">
             <h1>{username}</h1>
-        <div>
-            Manage your todos. <Link to='/todos'>Go here</Link>
-        </div>
+            <div>
+                Manage your todos. <Link to='/todos'>Go here</Link>
+            </div>
         </div>
     )
 }

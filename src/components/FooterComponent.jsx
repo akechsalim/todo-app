@@ -1,15 +1,15 @@
 import { useContext } from "react"
 import { AuthContext } from "./security/AuthContext"
-function FooterComponent(){
-    const authContext =  useContext(AuthContext)
+function FooterComponent() {
+    const authContext = useContext(AuthContext)
 
     console.log(authContext.number)
 
-    return(
+    return (
         <footer className='footer'>
-        <div className="container">
-            Footer
-        </div>
+            <div className="container">
+                Footer
+            </div>
         </footer>
     )
 }
