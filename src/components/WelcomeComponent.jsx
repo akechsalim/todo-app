@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { retrieveHelloWorldPathVariable } from './API/HelloWorldAPIService'
+import { retrieveAllTodosForUserAPI } from './API/TodoAPIService'
 function WelcomeComponent() {
 
     const { username } = useParams()
@@ -11,7 +11,7 @@ function WelcomeComponent() {
 
         console.log('called')
 
-        retrieveHelloWorldPathVariable('Salim')
+        retrieveAllTodosForUserAPI('akechsalim')
             .then((response) => successfulResponse(response))
             .catch((error) => errorResponse(error))
             .finally(() => console.log('cleanup'))

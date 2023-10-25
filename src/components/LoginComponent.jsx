@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from './security/AuthContext'
 function LoginComponent() {
 
-    const [username, setUsername] = useState('input')
+    const [username, setUsername] = useState('akechsalim')
 
     const [password, setPassword] = useState('')
 
 
-    const [showErrorMessage, setshowErrorMessage] = useState(false)
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
 
     const navigate = useNavigate();
 
@@ -20,13 +20,12 @@ function LoginComponent() {
     }
     function handlePasswordChange(event) {
         setPassword(event.target.value)
-        console.log(event.target.value)
     }
-    function handleSubmt() {
+    function handleSubmit() {
         if (authContext.login(username, password)) {
             navigate(`/welcome/${username}`)
         } else {
-            setshowErrorMessage(true)
+            setShowErrorMessage(true)
         }
 
     }
@@ -34,7 +33,7 @@ function LoginComponent() {
     return (
         <div className="Login">
             <h1>Time to login</h1>
-            {showErrorMessage && <div className='errorMessage'>Authentication failled.
+            {showErrorMessage && <div className='errorMessage'>Authentication failed.
                 Please check your credentials</div>}
             <div className="LoginForm">
                 <div>
@@ -47,7 +46,7 @@ function LoginComponent() {
                     <input type="password" name="password" value={password} onChange={handlePasswordChange} />
                 </div>
                 <div>
-                    <button type="button" name="login" onClick={handleSubmt}>login</button>
+                    <button type="button" name="login" onClick={handleSubmit}>login</button>
                 </div>
 
             </div>
