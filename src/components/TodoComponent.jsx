@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { retrieveTodoAPI, updateTodoAPI } from "./API/TodoAPIService"
+import { createTodoAPI, retrieveTodoAPI, updateTodoAPI } from "./API/TodoAPIService"
 import { useAuth } from "./security/AuthContext"
 import { useEffect, useState } from "react"
 import { ErrorMessage, Field, Form, Formik } from "formik"
+import moment from "moment/moment"
 
 export default function TodoComponent() {
 
@@ -24,12 +25,15 @@ export default function TodoComponent() {
     )
 
     function retrieveTodos() {
-        retrieveTodoAPI(username, id)
-            .then(response => {
-                setDescription(response.data.description)
-                setTargetDate(response.data.targetDate)
-            })
-            .catch(error => console.log(error))
+
+        if (id !== -1) {
+            retrieveTodoAPI(username, id)
+                .then(response => {
+                    setDescription(response.data.description)
+                    setTargetDate(response.data.targetDate)
+                })
+                .catch(error => console.log(error))
+        }
 
     }
     function onSubmit(values) {
@@ -42,11 +46,20 @@ export default function TodoComponent() {
             done: false
         }
 
-        updateTodoAPI(username, id, todo)
-            .then(response => {
-                navigate('/todos')
-            })
-            .catch(error => console.log(error))
+        if (id === -1) {
+            createTodoAPI(username, todo)
+                .then(response => {
+                    navigate('/todos')
+                })
+                .catch(error => console.log(error))
+
+        } else {
+            updateTodoAPI(username, id, todo)
+                .then(response => {
+                    navigate('/todos')
+                })
+                .catch(error => console.log(error))
+        }
 
     }
     function validate(values) {
@@ -56,7 +69,7 @@ export default function TodoComponent() {
         if (values.description.length < 5) {
             errors.description = 'Enter at least 5 characters'
         }
-        if (values.targetDate == null) {
+        if (values.targetDate === null || values.targetDate === ''|| moment(values.targetDate).isValid) {
             errors.targetDate = 'Enter a targetDate'
         }
         console.log(values)
