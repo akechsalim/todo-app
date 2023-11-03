@@ -1,14 +1,9 @@
-import { useContext } from "react"
-import { AuthContext } from "./security/AuthContext"
 function FooterComponent() {
-    const authContext = useContext(AuthContext)
-
-    console.log(`Footer component - ${authContext.number}`);
 
     return (
         <footer className='footer'>
             <div className="container">
-                Footer
+                <h1>todoApp 2023</h1>
             </div>
         </footer>
     )

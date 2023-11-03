@@ -11,31 +11,29 @@ function HeaderComponent() {
   }
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="row">
-          <nav className="navbar navbar-expand-lg">
-            <a className="navbar-brand site-link" href="https://www.akechsalim.com">akechsalim</a>
-            <div className="collapse navbar-collapse">
-              <ul className="navbar-nav">
-                <li className="nav-item">
+    <header>
+      <div>
+          <nav>
+            <h1>TODO App</h1>
+            <div>
+              <ul>
+                <li>
                   {isAuthenticated && <Link className="nav-link" to="/welcome/akechsalim">Home</Link>}
                 </li>
-                <li className="nav-item">
+                <li>
                   {isAuthenticated && <Link className="nav-link" to="/todos">Todos</Link>}
                 </li>
               </ul>
             </div>
-            <ul className="navbar-nav">
-              <li className="nav-item">
+            <ul>
+              {/* <li>
                 {!isAuthenticated && <Link className="nav-link" to="/login">Login</Link>}
-              </li>
-              <li className="nav-item">
+              </li> */}
+              <li>
                 {isAuthenticated && <Link className="nav-link" to="/logout" onClick={logout}>Logout</Link>}
               </li>
             </ul>
           </nav>
-        </div>
       </div>
     </header>
   );

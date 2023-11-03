@@ -10,22 +10,98 @@ footer {
   position: absolute;
   width: 90%;
   height: 40px;
+  font-size: 5px;
+}
+.mainLogin{
+  background-image: url('/TodoAppImage.jpeg');
 }
 
-.header {
-  border-bottom: 1px solid #e0e0e0;
-  border-width: 5px;
-  margin-bottom: 5rem;
-  padding: 2rem;
+.Login {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  
 }
 
-.site-link {
-  font-size: 24px;
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.LoginForm div {
+  margin-bottom: 10px;
+}
+
+.LoginForm label {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  color: black;
-  margin-left: 2px;
+  color: white;
 }
 
-.nav-link {
-  color: #333;
+.LoginForm input[type="text"],
+.LoginForm input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
 }
+
+.errorMessage {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.LoginForm button {
+  padding: 5px 25px;
+  background-color: #028802;
+  color: white;
+  border: 1px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+header {
+  background-color: white;
+  margin-bottom: 5px;
+  height: 70px;
+}
+
+header div {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+header nav {
+  padding: 10px 0;
+}
+
+header h1 {
+  font-weight: bold;
+  color: #181818;
+}
+
+header div ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+header li {
+  margin-right: 20px;
+}
+
+header a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+

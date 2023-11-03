@@ -1,6 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { executeJWTAuthenticationService } from "../API/AuthenticationAPIService";
-import { apiClient } from "../API/ApiClient";
 
 export const AuthContext = createContext()
 
@@ -13,45 +11,22 @@ export default function AuthProvider({ children }) {
 
     const [username, setUsername] = useState(null)
 
-    const [token, setToken] = useState(null)
-
-    async function login(username, password) {
-
-        try {
-
-            const response = await executeJWTAuthenticationService(username, password)
-
-            if (response.status === 200) {
-
-                const jwtToken = 'Bearer ' + response.data.token
-
-                setAuthenticated(true)
-                setUsername(username)
-                setToken(jwtToken)
-
-                apiClient.interceptors.request.use(
-                    (config) => {
-                        console.log('intercepting and adding a token')
-                        config.headers.Authorization = jwtToken
-                        return config
-                    }
-                )
-
-                return true
-            } else {
-                logout()
-                return false
-            }
-        } catch (error) {
-            logout()
+    function login(username, password) {
+        if(username=== 'akechsalim' && password ==='akech4476'){
+            setAuthenticated(true)
+            setUsername(username)
+            return true
+        }else{
+            setAuthenticated(false)
+            setUsername(null)
             return false
         }
+
+
     }
 
     function logout() {
         setAuthenticated(false)
-        setToken(null)
-        setUsername(null)
     }
 
 

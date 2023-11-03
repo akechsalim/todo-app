@@ -10,6 +10,7 @@ import TodoComponent from './TodoComponent'
 
 
 import './TodoApp.css'
+import FooterComponent from './FooterComponent'
 
 
 function AuthenticatedRoute({ children }) {
@@ -28,6 +29,8 @@ export default function TodoApp() {
             <AuthProvider>
                 <BrowserRouter>
                     <HeaderComponent />
+                    <FooterComponent />
+
                     <Routes>
                         <Route path='/' element={<LoginComponent />} />
                         <Route path='/login' element={<LoginComponent />} />
