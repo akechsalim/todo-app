@@ -33,7 +33,6 @@ function LoginComponent() {
     }
 
     return (
-        <div className='mainLogin'>
             <div className="Login">
                 {showErrorMessage && <div className='errorMessage'>Authentication failed.
                     Please check your credentials</div>}
@@ -53,7 +52,6 @@ function LoginComponent() {
 
                 </div>
             </div>
-        </div>
     )
 }
 export default LoginComponent

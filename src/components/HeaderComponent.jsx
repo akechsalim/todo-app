@@ -11,13 +11,14 @@ function HeaderComponent() {
   }
 
   return (
-    <header>
-      <div>
-          <nav>
-            <h1>TODO App</h1>
-            <div>
-              <ul>
-                <li>
+    <header className="border-bottom">
+      <div className="container">
+          <nav className="row">
+            <nav className="navbar navbar-expand-lg">
+            <h1>TODO APP</h1>
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav">
+                <li className="nav-item">
                   {isAuthenticated && <Link className="nav-link" to="/welcome/akechsalim">Home</Link>}
                 </li>
                 <li>
@@ -33,6 +34,7 @@ function HeaderComponent() {
                 {isAuthenticated && <Link className="nav-link" to="/logout" onClick={logout}>Logout</Link>}
               </li>
             </ul>
+            </nav>
           </nav>
       </div>
     </header>
