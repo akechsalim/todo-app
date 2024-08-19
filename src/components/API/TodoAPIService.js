@@ -1,4 +1,4 @@
-import { apiClient } from "./ApiClient"
+import { apiClient } from './ApiClient'
 
 export const retrieveAllTodosForUserAPI =
     (username) => apiClient.get(`/users/${username}/todos`)

@@ -20,8 +20,9 @@ export default function TodoComponent() {
 
     const username = authContext.username
 
-    useEffect(
-        () => retrieveTodos, [id]
+    useEffect(() => {
+        retrieveTodos()
+    }, [id]
     )
 
     function retrieveTodos() {
@@ -69,7 +70,7 @@ export default function TodoComponent() {
         if (values.description.length < 5) {
             errors.description = 'Enter at least 5 characters'
         }
-        if (values.targetDate === null || values.targetDate === ''|| moment(values.targetDate).isValid) {
+        if (values.targetDate === null || values.targetDate === '' || moment(values.targetDate).isValid) {
             errors.targetDate = 'Enter a targetDate'
         }
         console.log(values)
@@ -103,9 +104,9 @@ export default function TodoComponent() {
                                     <label>Target Date</label>
                                     <Field type='date' className='form-control' name='targetDate' />
                                 </fieldset>
-                                <di>
+                                <div>
                                     <button className="btn btn-success m-5" type="submit">Save</button>
-                                </di>
+                                </div>
 
                             </Form>
                         )
